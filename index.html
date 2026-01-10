@@ -3,51 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Advanced Todo</title>
+    <title>Dynamic Todo System</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
   </head>
   <body>
-    <div id="overlay" class="overlay hidden"></div>
+    <div id="overlay" class="overlay"></div>
 
-    <div id="sidebar" class="sidebar">
+    <aside id="sidebar" class="sidebar">
       <div class="sidebar-header">
-        <h3>Topics</h3>
-        <button id="close-menu">&times;</button>
+        <h3>Categories</h3>
+        <div class="sidebar-actions">
+          <button id="add-topic-btn" title="Add Category">+</button>
+          <button id="close-menu" class="icon-btn">&times;</button>
+        </div>
       </div>
-      <ul id="topic-filters">
-        <li data-filter="all" class="active">All Tasks</li>
-        <li data-filter="Personal">Personal</li>
-        <li data-filter="Work">Work</li>
-        <li data-filter="Study">Study</li>
-      </ul>
-    </div>
+      <ul id="topic-filters"></ul>
+    </aside>
 
-    <div class="container">
-      <div class="header">
+    <main class="container">
+      <header class="header">
         <div class="top-bar">
-          <button id="menu-btn" aria-label="Menu">&#9776;</button>
-          <h2>My Tasks</h2>
+          <button id="menu-btn" aria-label="Open Menu">&#9776;</button>
+          <h2>Task Manager</h2>
         </div>
 
         <div class="input-group">
-          <select id="topic-select">
-            <option value="Personal">Personal</option>
-            <option value="Work">Work</option>
-            <option value="Study">Study</option>
-          </select>
-          <input type="text" id="todo-input" placeholder="Add a task..." />
+          <select id="topic-select" aria-label="Select Category"></select>
+          <input
+            type="text"
+            id="todo-input"
+            placeholder="Enter task description..."
+            autocomplete="off"
+          />
           <button id="add-btn">Add</button>
         </div>
-      </div>
+      </header>
 
-      <div class="list-wrapper">
+      <section class="list-wrapper">
+        <div id="empty-state" class="hidden">
+          <p>No active tasks in this category.</p>
+        </div>
         <ul id="todo-list"></ul>
-      </div>
+      </section>
 
-      <div class="footer">
-        <button id="clear-btn">Remove All Tasks</button>
-      </div>
-    </div>
+      <footer class="footer">
+        <button id="clear-btn" class="danger-btn">
+          Batch Delete All Tasks
+        </button>
+      </footer>
+    </main>
+
     <script src="script.js"></script>
   </body>
 </html>
